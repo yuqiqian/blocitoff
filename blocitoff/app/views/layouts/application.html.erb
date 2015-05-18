@@ -2,29 +2,46 @@
 <html>
 <head>
   <title>Blocitoff</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
-  <div id="user_nav">
-    <% if current_user %>
-      Logged in as <%= current_user.email %>.
-      <%= link_to "Log out", log_out_path %>
-    <% else %>
-      <%= link_to "Sign up", sign_up_path %> or
-      <%= link_to "log in", log_in_path %>
-    <% end %>
-  </div>
-
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
-
-
 </head>
+
+
 <body>
+    <div class = "container">
+      <ul class = "nav nav-tabs">
+        <li><%= link_to "Blocitoff", root_path%></li>
+        <div id="user_nav" class = "pull-right user-info">
+        <% if current_user %>
+          Hi <%= current_user.email %>!
+        <%= link_to "Log out", log_out_path %>
+        <% else %>
+        <%= link_to "Sign up", sign_up_path %> or
+        <%= link_to "log in", log_in_path %>
+        <% end %>
+        </div>
+      </ul>
+      <% if flash[:notics]%>
+      <div class = "alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+      <% elsif flash[:error] %>
+      <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:error] %>
+      </div>
+      <% elsif flash[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+      
+    <% end %>
 
-<%= yield %>
-
+    <%= yield %>
+    </div>
 </body>
 </html>
