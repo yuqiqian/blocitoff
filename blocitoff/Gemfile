@@ -58,3 +58,7 @@ gem 'bcrypt', :require => 'bcrypt'
 gem 'faker'
 
 gem 'bootstrap-sass'
+
+gem 'heroku'
+
+gem 'figaro'
