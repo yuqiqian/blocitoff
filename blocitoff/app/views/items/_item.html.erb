@@ -1,0 +1,6 @@
+<%= content_tag :div, class:'media', id:"items-#{item.id}" do%>
+<div class="media-body">
+  <p><%= item.name%><%=link_to "", [item.user, item], method: :delete, remote: true, class:'glyphicon glyphicon-ok'%></p>
+  <small><%= pluralize(item.day_left, 'day') %> left</small>
+</div>
+<% end %>
