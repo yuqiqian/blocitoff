@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :items, only: [:create, :destroy]
   end
 
+  resources :todos, only: [:new, :create, :show]
+
   devise_for :users
 
   authenticated :user do
